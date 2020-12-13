@@ -5,7 +5,7 @@ const User = require('../models/user.js');
 module.exports = {
 
     async index(req, res) {
-        const users = await User.scan().exec();
+        const users = await User.find({});
         return res.json(users);
     },
 

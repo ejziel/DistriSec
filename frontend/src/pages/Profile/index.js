@@ -1,6 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
+import moment from 'moment';
 
 import api from '../../services/api';
 import './styles.css';
@@ -52,14 +53,16 @@ export default function Profile() {
             <h1>Detecções</h1>
                 <ul>
                     {incidents.map(incident => (
-                            <li key={incident.image_id}>
+                            <li key={moment(incident.createdAt).format('MMM Do, YYYY. h:mm a')}>
                             <strong>IMAGEM: </strong>
                             <p><img src={incident.image} alt=""/></p>
                             {/* <p>{incident.image}</p> */}
                             <strong>TIMESTAMP: </strong>
-                            <p>{incident.createdAt}</p>    
-                            {/* <strong>Valor: </strong> */}
-                            {/* <p>{Intl.NumberFormat('pt-Br',{style: 'currency', currency: 'BRL'}).format(incident.value)}</p>     */}
+                            <p className="date">
+                            { moment(incident.createdAt).format('MMM Do, YYYY. h:mm a') }
+                            </p>
+                            {/* <p>{incident.createdAt}</p>     */}
+
                             <button onClick={() => handleDeleteIncident(incident.image_id)} type="button">
                                 <FiTrash2 size={20}  color="#a8a8b3"></FiTrash2>
                             </button>

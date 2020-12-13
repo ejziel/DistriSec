@@ -1,19 +1,11 @@
-const dynamoose = require('dynamoose');
+const mongoose = require('mongoose');
 const uuid = require('uuid');
 
-dynamoose.aws.sdk.config.update({
-    "accessKeyId": "AKID",
-    "secretAccessKey": "SECRET",
-    "region": "us-east-1"
-});
-
-dynamoose.aws.ddb.local();
-
-const incidentSchema = new dynamoose.Schema({
+const incidentSchema = new mongoose.Schema({
     image_id: {
         type: String,
         hashKey: true,
-        default: uuid.v1(),
+        required: true,
     },
 
     user_id: {
@@ -32,4 +24,4 @@ const incidentSchema = new dynamoose.Schema({
     }
 );
 
-module.exports = dynamoose.model('Incident', incidentSchema);
+module.exports = mongoose.model('Incident', incidentSchema);

@@ -9,10 +9,9 @@ module.exports = {
     async index(req, res) {
         //const { page = 1 } = req.query;
 
-        const count = await Incident.scan().count().exec();
+        const count = await Incident.count().exec();
 
-        const incidents = await Incident.scan()
-        .exec();
+        const incidents = await Incident.find({});
 
         res.header('X-Total-Count', count["count"]);
 
@@ -58,16 +57,16 @@ module.exports = {
         const { id } = req.params;
         const user_id = req.headers.authorization;
 
-        const incident = await Incident.scan("image_id").eq(id).attributes(["user_id"]).exec();
+        const incident = await Incident.find({"image_id": id},"user_id").exec();
 
-        // console.log(incident[0]["user_id"]);
+        console.log(incident);
 
         if(incident[0]["user_id"] !== user_id) {
             return res.status(401).json({error: 'Operation not permited'});
         }
 
         try {
-            await Incident.delete(id);
+            await Incident.findByIdAndDelete(id);
             console.log("Successfully deleted item");
         } catch (error) {
             console.error(error);
