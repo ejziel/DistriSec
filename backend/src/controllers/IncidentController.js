@@ -1,6 +1,8 @@
 const crypto = require('crypto');
 
 const Incident = require('../models/incident.js');
+const { runImageFaceDetection } = require('../functions/faceDetection');
+
 
 module.exports = {
 
@@ -23,19 +25,33 @@ module.exports = {
         const {image} = req.body;
 
         const user_id = req.headers.authorization;
-        console.log(user_id)
+        // console.log(image)
+        // load base64 encoded image
+        if(image){
+            const detectImage = runImageFaceDetection(image);
+
+            // console.log(detectImage);
+
+            if(detectImage){
+                const id = crypto.randomBytes(8).toString('HEX');
+
+                const incident = await Incident.create({ 
+                    "image_id": id,
+                    "user_id": user_id, 
+                    "image": detectImage
+                });
+                //console.log(image_id)
+                // return res.json(incident);
+                return res.json({detected: true});
+            }else{
+                return res.json({detected: false});
+            }
+
+        }else{
+            return res.status(400).json({error: 'Invalid Image'});
+        }
         
-
-        const id = crypto.randomBytes(8).toString('HEX');
-
-        const incident = await Incident.create({ 
-            "image_id": id,
-            "user_id": user_id, 
-            "image": image
-        });
-
-        //console.log(image_id)
-        return res.json(incident);
+        
     },
 
     async delete(req, res) {
