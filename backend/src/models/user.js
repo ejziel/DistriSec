@@ -12,7 +12,6 @@ const uuid = require('uuid');
 const userSchema = new mongoose.Schema({
     id: {
         type: String,
-        hashKey: true,
         required: true,
     },
 

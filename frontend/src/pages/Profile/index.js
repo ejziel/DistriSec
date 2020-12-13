@@ -23,14 +23,14 @@ export default function Profile() {
         })
     } ,[userId]);
 
-    async function handleDeleteIncident(image_id) {
+    async function handleDeleteIncident(_id) {
         try {
-            await api.delete(`incidents/${image_id}`, {
+            await api.delete(`incidents/${_id}`, {
                 headers: {
                     Authorization: userId,
                 }
             });
-            setIncidents(incidents.filter(incident => incident.image_id !== image_id));
+            setIncidents(incidents.filter(incident => incident._id !== _id));
         } catch {
             alert('Erro ao deletar caso, tente novamente');
         }
@@ -63,7 +63,7 @@ export default function Profile() {
                             </p>
                             {/* <p>{incident.createdAt}</p>     */}
 
-                            <button onClick={() => handleDeleteIncident(incident.image_id)} type="button">
+                            <button onClick={() => handleDeleteIncident(incident._id)} type="button">
                                 <FiTrash2 size={20}  color="#a8a8b3"></FiTrash2>
                             </button>
                         </li>

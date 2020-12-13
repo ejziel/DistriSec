@@ -32,10 +32,7 @@ module.exports = {
             // console.log(detectImage);
 
             if(detectImage){
-                const id = crypto.randomBytes(8).toString('HEX');
-
                 const incident = await Incident.create({ 
-                    "image_id": id,
                     "user_id": user_id, 
                     "image": detectImage
                 });
@@ -57,11 +54,9 @@ module.exports = {
         const { id } = req.params;
         const user_id = req.headers.authorization;
 
-        const incident = await Incident.find({"image_id": id},"user_id").exec();
+        const incident = await Incident.find({"_id": id},"user_id").exec();
 
-        console.log(incident);
-
-        if(incident[0]["user_id"] !== user_id) {
+        if(incident[0]['user_id'] !== user_id) {
             return res.status(401).json({error: 'Operation not permited'});
         }
 
