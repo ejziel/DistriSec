@@ -6,6 +6,10 @@ const IncidentController = require('./controllers/IncidentController');
 const SessionController = require('./controllers/SessionController');
 const ProfileController = require('./controllers/ProfileController');
 
+routes.get('/', (req, res) => {
+    return res.json({ OK: true });
+});
+
 routes.post('/sessions', SessionController.create);
 
 routes.get('/users', UserController.index);
