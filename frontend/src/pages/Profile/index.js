@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import api from '../../services/api';
 import './styles.css';
+import distriSecImg from '../../assets/DistriSec-no.png';
 
 
 export default function Profile() {
@@ -44,13 +45,15 @@ export default function Profile() {
     return(
         <div className="profile-container">
             <header>
-                <span>Bem vindo, {userName}</span>
+                <span>Bem vindo, <b>{userName}</b></span>
                 <Link className="button" to="/incidents/new">Monitorar</Link>
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={18} color="#E02041" />
                 </button>
             </header>
-            <h1>Detecções</h1>
+            <img className="logo-prof" src={distriSecImg} alt="Monitore Agora"/>
+
+            <h1>Detecções:</h1>
                 <ul>
                     {incidents.map(incident => (
                             <li key={moment(incident.createdAt).format('MMM Do, YYYY. h:mm a')}>

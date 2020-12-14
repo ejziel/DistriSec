@@ -53,3 +53,9 @@
   .register-container .content form .input-group input + input {
     margin-left: 8px;
   }
+
+
+  .logo-reg{
+    width: 30%;
+    margin-right: 15px;
+  }

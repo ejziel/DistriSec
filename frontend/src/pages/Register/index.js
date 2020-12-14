@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import './styles.css';
+import distriSecImg from '../../assets/DistriSec-no.png';
 
 
 export default function Register() {
@@ -34,7 +35,9 @@ export default function Register() {
 
     return(
         <div className="register-container">
+            <img className="logo-reg" src={distriSecImg} alt="Monitore Agora"/>
             <div className="content">
+            
                 <section>
                     <h1>Cadastro</h1>
                     <p>Faça seu cadastro, entre e monitore o seu dispositivo</p>

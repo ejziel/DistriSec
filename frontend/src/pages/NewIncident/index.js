@@ -6,6 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 import './styles.css';
+import distriSecImg from '../../assets/DistriSec-no.png';
 
 
 export default function NewIncident() {
@@ -94,7 +95,7 @@ export default function NewIncident() {
 
 
     useEffect(() => {
-        console.log(captureOn)
+        // console.log(captureOn)
         
         const interval = setInterval(() => {
             if(captureOn){
@@ -114,19 +115,25 @@ export default function NewIncident() {
         } 
     }, [image]);
 
-    console.log(nbDetections);
+    // console.log(nbDetections);
 
     return(
         <div className="new-incident-container">
         <div className="content">
+            
+
             <section>
+                <div className="logo-div">
+                    <img className="logo-inci" src={distriSecImg} alt="Monitore Agora"/>
+                </div>
+
                 <h1>Iniciar novo monitoramento</h1>
                 <p>Defina o número de frames por segundo:</p>
 
                 <div className="fps-content"> 
                     <button className="button3" onClick={handleIncreaseFPSClick}>Aumentar FPS</button>
                     <div className="fps-number">
-                        {FPS}
+                        {FPS} FPS
                     </div>
                     <button className="button3" onClick={handleDecreaseFPSClick}>Diminuir FPS</button>
                 </div>
@@ -137,12 +144,15 @@ export default function NewIncident() {
                 </Link>
             </section>
             <div>
-                {/* <> */}
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                />
+                <>
+                <div className="webcam">
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        screenshotFormat="image/jpeg"
+                    />
+                </div>
+                
                 {captureOn ? (
                     <button className="button2" onClick={handleStopCaptureClick}>Parar Captura</button>
                 ) : (
@@ -160,7 +170,7 @@ export default function NewIncident() {
                     />
                 )} */}
                 
-                {/* </> */}
+                </>
                 {/* {console.log(captureOn)} */}
             </div>
 

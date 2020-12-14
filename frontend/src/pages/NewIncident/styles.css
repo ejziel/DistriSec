@@ -53,6 +53,8 @@
     max-width: 380px;
   }
   .new-incident-container .content section h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
     margin: 64px 0 32pxnew-incident-container2px;
     font-size: 28px;
   }
@@ -79,4 +81,23 @@
     text-align: center;
     text-decoration: yellow;
     width: 100%;
+  }
+
+  .logo-div {
+    width: 100%;
+    /* padding: 26px; */
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+
+  .logo-inci{
+    width: 80%;
+  }
+
+  .webcam {
+    width: 100%;
+    border:solid 10px;
+    border-style:groove;
+    
   }

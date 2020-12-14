@@ -4,6 +4,7 @@ import { FiLogIn } from 'react-icons/fi';
 import { Link, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
+import distriSecImg from '../../assets/DistriSec-no.png';
 
 
 export default function Logon() {
@@ -27,7 +28,9 @@ export default function Logon() {
     
     return(
         <div className="logonContainer">
+            <img src={distriSecImg} alt="Monitore Agora"/>
             <section className="form">
+                
                 <form onSubmit={handleLogin}>
                     <h1>Faça o seu logon</h1>
                     <input
