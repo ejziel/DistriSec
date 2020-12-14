@@ -3,9 +3,18 @@ const morgan = require('morgan');
 const routes = require('./routes');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const fs = require('fs');
+
+const credentials = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+    requestCert: false,
+    rejectUnauthorized: false
+};
+
+console.log(credentials);
 
 const app = express();
-
 app.use(morgan('dev'));
 app.use(express.json());
 
@@ -25,4 +34,6 @@ mongoose.connect( url, {
 app.use(cors());
 app.use(routes);
 
-app.listen(3333);
+const server = require('https').createServer(credentials, app);
+
+server.listen(3333);

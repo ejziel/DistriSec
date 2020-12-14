@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import Webcam from "react-webcam";
 
 import { FiArrowLeft } from 'react-icons/fi';
@@ -16,7 +16,6 @@ const videoConstraints = {
 export default function NewIncident() {
     const [image, setImage] = useState('');
     const [nbDetections, setNbDetections] = useState(0);
-    const history = useHistory();
     const userId = localStorage.getItem('userId');
 
     async function handleSubmit() {
@@ -42,7 +41,7 @@ export default function NewIncident() {
     }
     
     const webcamRef = React.useRef(null);
-    const [imgSrc, setImgSrc] = useState(null);
+
     const [captureOn, setCaptureOn] = useState(false);
     const [FPS, setFPS] = useState(1);
     
@@ -72,6 +71,8 @@ export default function NewIncident() {
                 case 5:
                     setFPS(5);
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -91,6 +92,8 @@ export default function NewIncident() {
                 case 5:
                     setFPS(1);
                     break;
+                default:
+                    break;
 
             }
         }
@@ -106,7 +109,6 @@ export default function NewIncident() {
                 const imageSrc = webcamRef.current.getScreenshot();
                 const image64 = imageSrc.toString('base64');
                 setImage(image64);
-                setImgSrc(imageSrc);
             }
         }, 1000/FPS);
         return () => clearInterval(interval);   
