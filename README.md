@@ -26,6 +26,8 @@ The modeling of the system guarantees:
    - The balancer guarantees the insertion of several instances of the server;
 - Data consistency
    - The database has a main instance and two secondary replicas;
+   
+![Screenshot](assets/diagram.png)
 
 ## Build project
 
