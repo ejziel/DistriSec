@@ -8,6 +8,10 @@ import api from '../../services/api';
 import './styles.css';
 import distriSecImg from '../../assets/DistriSec-no.png';
 
+const videoConstraints = {
+    facingMode: "user"
+};
+
 
 export default function NewIncident() {
     const [image, setImage] = useState('');
@@ -149,6 +153,7 @@ export default function NewIncident() {
                     <Webcam
                         audio={false}
                         ref={webcamRef}
+                        videoConstraints={videoConstraints}
                         screenshotFormat="image/jpeg"
                     />
                 </div>
